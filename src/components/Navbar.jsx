@@ -1,8 +1,21 @@
 import { Navbar, Container, Nav, Row, Col,Button, Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import { Link, useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 const CustomNavbar = function () {
+  const location = useLocation()
+
+  const [linkUrls, setLinkUrls] = useState([
+    { path: '/', name: 'Home' },
+    { path: '/tvseries', name: 'Tv Shows' },
+    { path: '/movies', name: 'Movies' },
+    { path: '/recentlyadd', name: 'Recently Added' },
+    { path: '/mylist', name: 'My List' },
+  ])
+  const addActiveOrNot = (path) => {
+    return location.pathname === '/' + path ? 'nav-link active' : 'nav-link'
+  }
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-dark mt-0 nav" >
       <Container >
@@ -10,12 +23,41 @@ const CustomNavbar = function () {
             <div className='d-flex align-items-center'>
          <Navbar.Brand href="#home"><img src="https://loodibee.com/wp-content/uploads/Netflix-logo.png" alt="netflix logo" className='logo' /></Navbar.Brand>
 
-          
-            <Nav.Link href="#features" className=' text-white'>Home</Nav.Link>
-            <Nav.Link href="#tvshows" className=' text-white'>Tv Shows</Nav.Link>
-            <Nav.Link href="#movies" className=' text-white'>Movies</Nav.Link> 
-            <Nav.Link href="#recentlyadd" className=' text-white'>Recently Added</Nav.Link>
-            <Nav.Link href="#mylist" className=' text-white'>My List</Nav.Link>    </div> 
+         <Link to="/" className={addActiveOrNot('')}>
+              Home
+            </Link>
+            <Link
+              to="/tvseries"
+              className={`nav-link${
+                location.pathname === '/tvseries' ? ' active' : ''
+              }`}
+            >
+              Tv Shows
+            </Link>
+            <Link
+              to="/movies"
+              className={`nav-link${
+                location.pathname === '/movies' ? ' active' : ''
+              }`}
+            >
+              Movies
+            </Link>
+            <Link
+              to="/recentlyadd"
+              className={`nav-link${
+                location.pathname === '/recentlyadd' ? ' active' : ''
+              }`}
+            >
+              Recently Added
+            </Link>
+            <Link
+              to="/mylist"
+              className={`nav-link${
+                location.pathname === '/mylist' ? ' active' : ''
+              }`}
+            >
+              My List
+            </Link>  </div> 
                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"> 

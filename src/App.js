@@ -10,27 +10,31 @@ import { Col } from 'react-bootstrap';
 import Movies2 from './components/MovieList3';
 import Footercustom from './components/Footer';
 import BasicExample from './components/Genres';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App bg-dark">
+      <BrowserRouterter>
       <header>
         <CustomNavbar/>
       </header>
       <main>
+        <Routes>
         <BasicExample></BasicExample>
         <Container className='text-start mt-4 text-white' >
-          <Movies/>
+          <Route path="/" element={<Movies/>} />
+          </Container>
+        <Container className='text-start text-white mt-3'>
+        <Route path="/" element={<Movies1 />} />
         </Container>
         <Container className='text-start text-white mt-3'>
-          <Movies1/>
+          <Route path="/" element={<Movies2/>} />
         </Container>
-        <Container className='text-start text-white mt-3'>
-          <Movies2/>
-        </Container>
+        </Routes>
       </main>
       <Footercustom/>
+      </BrowserRouterter>
     </div>
   );
 }
