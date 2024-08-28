@@ -5,25 +5,25 @@ import { Col } from 'react-bootstrap';
 
 
 
-class Movies extends Component {
+class TvSeries extends Component {
   state = {
-    remoteMovies: [],
+    remoteTvSeries: [],
   };
 
-  fetchMovie = () => {
-    fetch('http://www.omdbapi.com/?apikey=6a9548b4&s=Lord Of Rings')
+  fetchSerie = () => {
+    fetch('http://www.omdbapi.com/?apikey=6a9548b4&s=Shameless')
       .then((response) => {
         console.log(response);
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error('Error fetching movies');
+          throw new Error('Error fetching serie');
         }
       })
       .then((data) => {
         console.log(data);
         this.setState({
-          remoteMovies: data.Search || [],
+          remoteTvSeries: data.Search || [],
         });
       })
       .catch((error) => {
@@ -32,40 +32,40 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    this.fetchMovie();
+    this.fetchSerie();
   }
 
   render() {
     console.log('Render method called');
     const movieGroups = [];
-    for (let i = 0; i < this.state.remoteMovies.length; i += 5) {
-      movieGroups.push(this.state.remoteMovies.slice(i, i + 5));
+    for (let i = 0; i < this.state.remoteTvSeries.length; i += 5) {
+      movieGroups.push(this.state.remoteTvSeries.slice(i, i + 5));
     }
 
     return (
-        <Container className='text-start mt-4 text-white'>
-            <h2>Il Signore Degli Anelli</h2>
+        <div>
+            <h2 className="text-white">Shameless</h2>
         <Carousel>
           {movieGroups.map((group, index) => (
             <Carousel.Item key={index}>
               <Row className='justify-content-between'>
-                {group.map((movie, idx) => (
+                {group.map((TvSeries, idx) => (
                   <Col key={idx} xs={2} sm={2} md={2}>
                     <img
                       className="d-block w-100"
-                      src={movie.Poster}
-                      alt={`Poster of ${movie.Title}`}
+                      src={TvSeries.Poster}
+                      alt={`Poster of ${TvSeries.Title}`}
                     />
-                    <h5>{movie.Title}</h5>
+                    <h5>{TvSeries.Title}</h5>
                   </Col>
                 ))}
               </Row>
             </Carousel.Item>
           ))}
         </Carousel>
-      </Container>
+      </div>
     );
   }
 }
 
-export default Movies;
+export default TvSeries;

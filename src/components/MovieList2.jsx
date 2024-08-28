@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Carousel, CarouselItem } from "react-bootstrap";
 import { Row} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 
 
@@ -43,7 +44,7 @@ class Movies1 extends Component {
     }
 
     return (
-        <div>
+      <Container className='text-start mt-4 text-white'>
         
         <Carousel>
           {movieGroups.map((group, index) => (
@@ -63,7 +64,7 @@ class Movies1 extends Component {
             </Carousel.Item>
           ))}
         </Carousel>
-      </div>
+      </ Container>
     );
   }
 }

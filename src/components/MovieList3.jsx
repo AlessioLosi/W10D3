@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Carousel, CarouselItem } from "react-bootstrap";
 import { Row} from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
+import {  Container} from 'react-bootstrap';
 
 
 
@@ -43,8 +44,7 @@ class Movies2 extends Component {
     }
 
     return (
-        <div>
-            <h2>Star Wars</h2>
+<Container className='text-start mt-4 text-white'>            <h2>Star Wars</h2>
         <Carousel>
           {movieGroups.map((group, index) => (
             <Carousel.Item key={index}>
@@ -63,7 +63,7 @@ class Movies2 extends Component {
             </Carousel.Item>
           ))}
         </Carousel>
-      </div>
+      </Container>
     );
   }
 }
